@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const ProductDetails = ()=>{
     const id = useParams();
-    console.log(typeof(id.id))
+    //console.log(typeof(id.id))
 
     const [product, setProduct] = useState([]);
 
@@ -21,7 +21,7 @@ const ProductDetails = ()=>{
     
       useEffect(()=>{
         fetchProducts()
-      },[id.id]);
+      },[fetchProducts]);
 
       //console.log(product.rating.count);
 

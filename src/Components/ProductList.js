@@ -12,9 +12,9 @@ function ProductList() {
       const response = await fetch('https://fakestoreapi.com/products')
       
       const data = await response.json();
-      console.log(data);
+      //console.log(data);
       const result = Object.values(data);
-      console.log(result);
+      //console.log(result);
       setProducts(result);
     } catch (error) {
       console.log("error while fetching", error)
@@ -28,7 +28,7 @@ function ProductList() {
   return (
     <section className="product-list">
       {products.map((product) => (
-        <ProductCard product={product} />
+        <ProductCard key={product.id} product={product} />
       ))}
     </section>
   );
