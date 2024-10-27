@@ -1,27 +1,30 @@
 import { useParams } from "react-router-dom"
 import "./ProductDetails.css"
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const ProductDetails = ()=>{
     const id = useParams();
     //console.log(typeof(id.id))
+    const userId = id.id;
 
     const [product, setProduct] = useState([]);
 
-    const fetchProducts = async ()=>{
-        try {
-          const response = await fetch(`https://fakestoreapi.com/products/${id.id}`)
-          
-          const data = await response.json();
-          setProduct(data);
-        } catch (error) {
-          console.log("error while fetching", error)
+    const fetchProduct = useCallback(async () => {
+      try {
+        const response = await fetch(`https://fakestoreapi.com/products/${userId}`);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
         }
+        const data = await response.json();
+        setProduct(data);
+      } catch (error) {
+        console.log("error while fetching", error)
       } 
-    
-      useEffect(()=>{
-        fetchProducts()
-      },[fetchProducts]);
+    }, [userId]); 
+  
+    useEffect(() => {
+      fetchProduct();
+    }, [fetchProduct]);
 
       //console.log(product.rating.count);
 
