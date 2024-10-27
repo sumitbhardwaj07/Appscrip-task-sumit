@@ -1,0 +1,36 @@
+.footer {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .logo {
+    font-size: 30px;
+    color: white;
+  }
+  
+  .links, .socials {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .links a, .socials a {
+    color: wheat;
+    text-decoration: none;
+    gap: 20px;
+  }
+  
+  .bottom {
+    font-size: 14px;
+    color: #aaa;
+  }
+  
