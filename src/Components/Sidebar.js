@@ -1,56 +1,24 @@
 import React from 'react';
 import './Sidebar.css';
 
-function Sidebar() {
+function Sidebar({ onChange }) {
+
+    const categoryChangeHandler = (event) => {
+        onChange(event.target.value);
+      };
+
   return (
-    <aside className="sidebar">
+    <div className="sidebar">
       <h3>Filters</h3>
-      <ul>
-        <li>
-            <label htmlFor='idealfor'>IDEAL FOR</label><br />
-            <select id='idealfor' >
-                <option >All</option>
-                <option >Men</option>
-                <option >Women</option>
+            <label htmlFor='idealfor'>Category</label><br />
+            <select id='idealfor' onChange={categoryChangeHandler} >
+                <option value="All">All</option>
+                <option value="men's clothing">Men</option>
+                <option value="women's clothing">Women</option>
+                <option value="jewelery">Jewellery</option>
+                <option value="electronics">Electronics</option>
             </select>
-        </li>
-        <li>
-            <label htmlFor='occasion'>OCCASION</label><br />
-            <select id='ocassion' >
-                <option >All</option>
-                <option >Bachelor Party</option>
-                <option >Birthday</option>
-                <option >Diwali</option>
-            </select>
-        </li>
-        <li>
-            <label htmlFor='fabric'>FABRIC</label><br />
-            <select id='fabric' >
-                <option >All</option>
-                <option >Cotton</option>
-                <option >Wool</option>
-                <option >Linen</option>
-            </select>
-        </li>
-        <li>
-            <label htmlFor='rawmaterial'>RAW MATERIAL</label><br />
-            <select id='rawmaterial' >
-                <option >All</option>
-                <option >Wool</option>
-                <option >COTTON</option>
-            </select>
-        </li>
-        <li>
-            <label htmlFor='pattern'>PATTERN</label><br />
-            <select id='pattern' >
-                <option >All</option>
-                <option >Plain</option>
-                <option >Check</option>
-                <option >Print</option>
-            </select>
-        </li>
-      </ul>
-    </aside>
+    </div>
   );
 }
 

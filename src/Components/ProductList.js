@@ -3,7 +3,7 @@ import ProductCard from './ProductCard';
 import './ProductList.css';
 
 
-function ProductList() {
+function ProductList({ Category }) {
 
   const [products, setProducts ] = useState([]);
 
@@ -25,9 +25,14 @@ function ProductList() {
     fetchProducts()
   },[]);
 
+  console.log(Category);
+
+  const filteredProducts = Category === "All" ? products : products.filter(product => product.category === Category);
+
+  console.log(filteredProducts)
   return (
     <section className="product-list">
-      {products.map((product) => (
+      {filteredProducts.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </section>
