@@ -10,11 +10,16 @@ import StoriesPage from './Components/Pages/StoriesPage';
 import AboutPage from './Components/Pages/AboutPage';
 import ContactusPage from './Components/Pages/ContactUsPage';
 import { useState } from 'react';
+import NextHeader from './Components/Header2';
 
 
 function App() {
 
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [hideFilter, setHideFilter] = useState(true);
+
+  const [productCount, setProductCount] = useState(0);
+  //console.log(productCount)
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
@@ -23,10 +28,11 @@ function App() {
   return (
     <div className="app">
       <Header />
+      <NextHeader productCount={productCount} hideFilter={hideFilter} setHideFilter={setHideFilter} />
       <div className="main">
-      <Sidebar onChange={handleCategoryChange} />
+      {hideFilter && <Sidebar onChange={handleCategoryChange} />}
         <Routes>
-          <Route path='/' element={<ProductList Category={selectedCategory} />} exact />
+          <Route path='/' element={<ProductList Category={selectedCategory} setProductCount={setProductCount}/>} exact />
           <Route path='/:id' element={<ProductDetails />} />
           <Route path='/skills' element={<SkillsPage />} />
           <Route path='/stories' element={<StoriesPage />} />

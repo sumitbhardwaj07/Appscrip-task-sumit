@@ -3,7 +3,7 @@ import ProductCard from './ProductCard';
 import './ProductList.css';
 
 
-function ProductList({ Category }) {
+function ProductList({ Category, setProductCount }) {
 
   const [products, setProducts ] = useState([]);
 
@@ -25,11 +25,15 @@ function ProductList({ Category }) {
     fetchProducts()
   },[]);
 
-  console.log(Category);
+  //console.log(Category);
 
   const filteredProducts = Category === "All" ? products : products.filter(product => product.category === Category);
 
-  console.log(filteredProducts)
+  //console.log(Object.keys(filteredProducts).length)
+
+  useEffect(() => {
+    setProductCount(filteredProducts.length);
+  }, [filteredProducts, setProductCount]);
   return (
     <section className="product-list">
       {filteredProducts.map((product) => (
